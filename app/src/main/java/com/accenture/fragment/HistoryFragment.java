@@ -64,18 +64,26 @@ public class HistoryFragment extends Fragment {
                 "广州市越秀区4", "广州市南沙区5", "广州市佛山区6", "广州市番禺区7", "广州市天河区8",
                 "广州市佛山区9", "广州市海珠区0", "广州市越秀区11", "广州市南沙区12",
                 "广州市佛山区13", "广州市番禺区14", "广州市天河区15", "广州市海珠区16",
-                "广州市越秀区17", "广州市南沙区18", "广州市中山大道19"};
+                "广州市越秀区17", "广州市南沙区18", "广州市中山大道19","广州市中山大道20",
+                "广州市佛山区13", "广州市番禺区14", "广州市天河区15", "广州市海珠区16",
+                "广州市越秀区17", "广州市南沙区18", "广州市中山大道19","广州市中山大道20",
+                "广州市佛山区13", "广州市番禺区14", "广州市天河区15", "广州市海珠区16",
+                "广州市越秀区17", "广州市南沙区18", "广州市中山大道19","广州市中山大道20",
+                "广州市佛山区13", "广州市番禺区14", "广州市天河区15", "广州市海珠区16",
+                "广州市越秀区17", "广州市南沙区18", "广州市中山大道19","广州市中山大道20"};
+
         List<Map<String, Object>> items = new ArrayList<Map<String,Object>>();
         View view = inflater.inflate(R.layout.fragment_history,null);
         listView = view.findViewById(R.id.history_listview);
 
-        Map<String, Object> item = new HashMap<String, Object>();
+        Map<String, Object> item ;
         for(int i=0;i < locations.length;i++) {
+            item = new HashMap<String, Object>();
             item.put("location", locations[i]);
             items.add(item);
         }
         SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity(),items,
-                R.layout.history_list_item,new String[]{"locations"},new int[]{R.id.history_location});
+                R.layout.history_list_item,new String[]{"location"},new int[]{R.id.history_location});
         listView.setAdapter(simpleAdapter);
 //        listView.setAdapter(new ArrayAdapter<>(view.getContext(), R.layout.history_list_item,locations));
         return view;
