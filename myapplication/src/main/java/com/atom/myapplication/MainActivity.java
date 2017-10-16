@@ -5,9 +5,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.atom.myapplication.fragment.BlankFragment;
 import com.atom.myapplication.fragment.MyFragment;
 
 import java.util.ArrayList;
@@ -19,11 +21,26 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationBar.OnTabSelectedListener bottomBarListener = new BottomNavigationBar.OnTabSelectedListener(){
         @Override
         public void onTabSelected(int position) {
+            Log.i("", position + "=============================================");
             //from left to right, start with 0
-
+            if(fragments != null && position < fragments.size()){
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction transaction = fm.beginTransaction();
+                transaction.replace(R.id.frameLayout,fragments.get(position));
+                transaction.commitAllowingStateLoss();
+            }
         }
         @Override
         public void onTabUnselected(int position) {
+            if (fragments != null) {
+                if (position < fragments.size()) {
+                    FragmentManager fm = getSupportFragmentManager();
+                    FragmentTransaction ft = fm.beginTransaction();
+                    Fragment fragment = fragments.get(position);
+                    ft.remove(fragment);
+                    ft.commitAllowingStateLoss();
+                }
+            }
         }
         @Override
         public void onTabReselected(int position) {
@@ -42,14 +59,17 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationBar.initialise();
 
         bottomNavigationBar.setTabSelectedListener(bottomBarListener);
+        setDefaultFragment();
     }
 
     private void setDefaultFragment(){
+        fragments.add(BlankFragment.newInstance("", "BFragment 1"));
         fragments.add(new MyFragment());
+        fragments.add(new BlankFragment("", "BFragment 2"));
 
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(R.id.frameLayout,fragments.get(0));
+        transaction.replace(R.id.frameLayout,fragments.get(2));
         transaction.commit();
     }
 
