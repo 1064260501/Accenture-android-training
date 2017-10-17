@@ -1,19 +1,24 @@
 package com.accenture.fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.accenture.accenturetairningdemo.R;
-import com.accenture.service.ClockAlertIntentService;
 
+
+/**
+ * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * {@link SettingsFragment.OnFragmentInteractionListener} interface
+ * to handle interaction events.
+ * Use the {@link SettingsFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
 public class SettingsFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -69,29 +74,6 @@ public class SettingsFragment extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        Button startClockAlertServiceButton = getActivity().findViewById(R.id.start_clock_alert_service);
-        startClockAlertServiceButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent startClockAlertServiceIntent = new Intent(getActivity(), ClockAlertIntentService.class);
-                getActivity().startService(startClockAlertServiceIntent);
-            }
-        });
-
-        Button closeClockAlertServiceButton = getActivity().findViewById(R.id.close_clock_alert_service);
-        closeClockAlertServiceButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent closeClockAlertServiceIntent = new Intent(getActivity(), ClockAlertIntentService.class);
-                getActivity().stopService(closeClockAlertServiceIntent);
-            }
-        });
     }
 
     @Override
