@@ -1,13 +1,21 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.hp.fragment.SettingsFragment">
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <AnalogClock
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_settings_fragment" />
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/start_clock_alert_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start Clock Alert Service"/>
 
-</FrameLayout>
+    <Button
+        android:id="@+id/close_clock_alert_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Close Clock Alert Service"/>
+
+</LinearLayout>
