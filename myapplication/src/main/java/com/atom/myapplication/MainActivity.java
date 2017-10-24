@@ -9,12 +9,14 @@ import android.util.Log;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.atom.myapplication.dummy.DummyContent;
 import com.atom.myapplication.fragment.BlankFragment;
+import com.atom.myapplication.fragment.ItemFragment;
 import com.atom.myapplication.fragment.MyFragment;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ItemFragment.OnListFragmentInteractionListener {
 
     private ArrayList<Fragment> fragments = new ArrayList<Fragment>();
 
@@ -63,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setDefaultFragment(){
-        fragments.add(BlankFragment.newInstance("", "BFragment 1"));
+        fragments.add(ItemFragment.newInstance(1));
         fragments.add(new MyFragment());
         fragments.add(new BlankFragment("", "BFragment 2"));
 
@@ -73,4 +75,8 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+        Log.i("",item.content);
+    }
 }
